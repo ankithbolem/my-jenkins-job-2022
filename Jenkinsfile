@@ -5,11 +5,17 @@ pipeline{
     }
     stages{
         stage("maven build"){
+            when{
+            branch "develop"
+            }
             steps{
                 sh 'mvn clean package'
             }
         }
         stage("tomcat deploy"){
+            when{
+            branch "master"
+            }
             steps{
                 sshagent(['12334']) {
                // copy war file
