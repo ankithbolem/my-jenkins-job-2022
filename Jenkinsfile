@@ -4,11 +4,6 @@ pipeline{
         cron ("* 10 * * *")
     }
     stages{
-        stage("git clone"){
-            steps{
-                git credentialsId: '12334', url: 'https://github.com/ankithbolem/my-app'
-            }
-        }
         stage("maven build"){
             steps{
                 sh 'mvn clean package'
