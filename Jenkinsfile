@@ -14,7 +14,7 @@ pipeline{
         }
         stage("tomcat deploy"){
             when{
-            branch "master"
+            branch "main"
             }
             steps{
                 sshagent(['12334']) {
