@@ -1,21 +1,15 @@
+@Library("prasad") _
 pipeline{
     agent any
     stages{
-
-        stage("maven build"){
-            when{
-            branch "develop"
-            }
+        stage("Maven Build"){
             steps{
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTests=true'
             }
         }
-        stage("tomcat deploy"){
-            when{
-            branch "main"
-            }
+        stage(" Dev Tomcat Deploy"){
             steps{
-             echo "hey ankith"
+                tomcatDeploy("172.31.1.213","ec2-user","tomcat-dev")
             }
         }
     }
